@@ -47,6 +47,37 @@ var findSymmetric = function(node1, node2) {
  */
 var isSymmetricIterative = function(root) {
   if (!root) {
-      return true;
+    return true;
   }
+
+  var queue = [root.left, root.right];
+  while (queue.length) {
+    var queueSize = queue.length;
+    if (queueSize % 2 !== 0) {
+      return false
+    }
+    var temp = [];
+    
+    for (var i = 0; i < queueSize/2; i++) {
+      var leftNode = queue.shift();
+      var rightNode = queue.pop();
+      if (!leftNode && !rightNode) {
+          continue;
+      }
+      if (!leftNode || !rightNode) {
+          return false;
+      }
+      if (leftNode.val !== rightNode.val) {
+          return false;
+      }
+      
+      temp.splice(0, 0, leftNode.left);
+      temp.splice(0, 0, leftNode.right);
+      temp.push(rightNode.right);
+      temp.push(rightNode.left);
+    }
+    queue = temp;
+  }
+      
+  return true;
 };
