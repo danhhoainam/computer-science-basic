@@ -33,3 +33,34 @@ var connect = function(root) {
     }
   }
 };
+
+/**
+ * Online solution
+ */
+var connect = function(root) {
+  var first = root;
+  
+  while (first) {
+    var cur = first;
+    var prev = null;
+    
+    first = null
+    
+    var wire = function(node) {
+      if (node === null) return;
+      if (prev === null) {
+        prev = node;
+        first = node;
+      } else {
+        prev.next = node;
+        prev = prev.next;
+      }
+    }
+    
+    while (cur !== null) {
+      wire(cur.left);
+      wire(cur.right);
+      cur = cur.next;
+    }        
+  }
+};
