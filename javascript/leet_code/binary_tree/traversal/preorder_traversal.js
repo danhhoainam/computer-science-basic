@@ -6,6 +6,8 @@
  * }
  */
 /**
+ * root -> left -> right
+ * O(N)?
  * @param {TreeNode} root
  * @return {number[]}
  */
@@ -52,6 +54,12 @@ var traverse = function(node, result) {
 }
 
 //==============================================
+/**
+ * use stack to build a tree
+ * order: root -> left -> right
+ * O(n)?
+ * @param {*} root 
+ */
 var preorderTraversal3 = function(root) {
   var visited = [];
 
